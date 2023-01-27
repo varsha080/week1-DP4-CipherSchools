@@ -51,3 +51,23 @@ void setZeroes(vector<vector<int>>& matrix) {
                 j++;
             }
         }
+
+        
+//Search in a 2D matrix
+bool searchMatrix(vector<vector<int>>& matrix, int target){        
+int row=matrix.size();
+        int col= matrix[0].size();
+        int c=col-1,r=0;
+        while(c>=0 && r<row){
+           if(matrix[r][c]== target){
+               return true;
+           }
+           else if(matrix[r][c]> target){
+                    c--;
+           }
+           else{
+               r++;
+           }
+        }
+        return false;
+}
