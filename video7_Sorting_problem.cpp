@@ -71,3 +71,63 @@ int row=matrix.size();
         }
         return false;
 }
+
+        
+//Search in a rotated sorted array
+int binarySearch(vector<int>& arr, int l, int r, int x)
+{
+       while(l<=r){
+        int mid = (l + r) / 2;
+ 
+        // If the element is present at the middle
+        // itself
+        if (arr[mid] == x)
+            return mid;
+ 
+        // If element is smaller than mid, then
+        // it can only be present in left subarray
+        if (arr[mid] > x)
+            return binarySearch(arr, l, mid - 1, x);
+ 
+        // Else the element can only be present
+        // in right subarray
+        return binarySearch(arr, mid + 1, r, x);
+    }
+ 
+    // We reach here when element is not
+    // present in array
+    return -1;
+}
+
+    int search(vector<int>& nums, int x) {
+       int n=nums.size();
+        int i=n-1;
+    if(nums[0]>nums[n-1]){
+        while(nums[0]>nums[i]){
+            i--;
+        }
+    
+        
+        
+        i=i+1;
+    }
+    else{
+        return binarySearch(nums,0,n-1,x);
+    }
+    
+    if(x==nums[i]){
+     return i;
+    }
+     if(x==nums[n-1]){
+        return n-1;
+    }
+    
+    if(x>nums[i]  && x<nums[n-1]){
+        return binarySearch(nums,i,n-1,x);
+    }
+    
+    else{
+        return binarySearch(nums,0,i-1,x);
+    }
+    
+}
